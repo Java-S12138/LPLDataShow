@@ -1,0 +1,213 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>英雄联盟LPL比赛数据可视化</title>
+    <link rel="shortcut icon" href="../static/images/lol.ico"  type="image/x-icon"/>
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../static/js/echarts.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.liMarquee.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.cxselect.min.js"></script>
+
+    <link rel="stylesheet" href="../static/css/comon0.css">
+</head>
+<body>
+    <div style="background:#000d4a url(../static/images/bg.png) center top;">
+        <div class="loading">
+            <div class="loadbox"> <img src="../static/images/loading.gif"> 页面加载中... </div>
+        </div>
+        <div class="back"></div>
+        <div class="head">
+            <div class="JavaS">Java_S</div>
+            <div class="weather"><span id="showTime"></span></div>
+            <h1>英雄联盟LPL比赛数据可视化</h1>
+
+        </div>
+        <script>
+            var t = null;
+            t = setTimeout(time, 1000);/*開始运行*/
+            function time() {
+                clearTimeout(t);/*清除定时器*/
+                dt = new Date();
+                var y = dt.getFullYear();
+                var mt = dt.getMonth() + 1;
+                var day = dt.getDate();
+                var h = dt.getHours();
+                var m = dt.getMinutes();
+                var s = dt.getSeconds();
+                document.getElementById("showTime").innerHTML = y + "年" + mt + "月" + day + "日" + h + "时" + m + "分" + s + "秒";
+                t = setTimeout(time, 1000); 
+            }
+
+        </script>
+        <div class="mainbox">
+            <ul class="clearfix">
+                <li>
+                    <div class="boxall" style="height:400px;">
+                        <div class="alltitle">个人数据堆叠图</div>
+                        <div class="navboxall" id="echart5"></div>
+                    </div>
+                    <div class="boxall" style="height:260px;">
+                        <div class="alltitle">英雄数据轮播图</div>
+                        <div class="navboxall">
+                            <div class="wraptit">
+                                <span>英雄名称</span><span>场数</span><span>Pick率</span><span>胜率</span>
+                            </div>
+                            <div class="wrap">
+                                <ul id="heropick">
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="boxall" style="height:260px;">
+                        <div class="alltitle">夺冠种子战队</div>
+
+                        <div class="navboxall" id="echart1"></div>
+                    </div>
+                </li>
+                <li>
+
+                    <div class="boxall" style="height:230px">
+                        <div class="clearfix navboxall" style="height: 100%">
+<!--                            <div class="pulll_left num">-->
+<!--                                <div class="numbt">总体情况<span>(单位：元)</span></div>-->
+<!--                                <div class="numtxt">19382721 </div>-->
+<!--                            </div>-->
+                            <div class="pulll_left zhibiao">
+                                <div class="zb1"><span id="winratetop"></span><div id="zb1"></div></div>
+                                <div class="zb2"><span id="killtop"></span><div id="zb2"></div></div>
+                                <div class="zb3"><span id="ineyetop"></span><div id="zb3"></div></div>
+                            </div>
+                            <div class="pulll_right zhibiao " >
+                                <div class="zb4"><span id="memberkilltop"></span><div id="zb4"></div></div>
+                                <div class="zb5"><span id="memberdietop"></span><div id="zb5"></div></div>
+                                <div class="zb6"><span id="memberkdatop"></span><div id="zb6"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxall" style="height:350px">
+                        <div class="alltitle">战队胜负数据</div>
+                        <div class="navboxall" id="echart4"></div>
+
+                    </div>
+                    <div class="boxall" style="height:340px">
+                        <div class="alltitle">个人击杀数据</div>
+                        <div class="navboxall" id="echart3"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="boxall" style="height:300px">
+                        <div class="alltitle">战队排行榜</div>
+                        <div class="navboxall">
+                            <table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody id="wingstop5">
+                                    <tr>
+                                        <th scope="col" class="toptop">排名</th>
+                                        <th scope="col">战队</th>
+                                        <th scope="col">出场次数</th>
+                                        <th scope="col">胜率</th>
+                                    </tr>
+                                    <tr>
+                                        <td><span>1</span></td>
+                                        <td></td>
+                                        <td><br></td>
+                                        <td><br></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><span>3</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>4</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>5</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="boxall" style="height: 300px">
+                        <div class="alltitle">个人排行榜</div>
+                        <div class="navboxall">
+                            <table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody id="membertop5">
+                                    <tr>
+                                        <th scope="col" class="toptop">排名</th>
+                                        <th scope="col">队员</th>
+                                        <th scope="col">位置</th>
+                                        <th scope="col">总击杀</th>
+                                    </tr>
+                                    <tr>
+                                        <td><span>1</span></td>
+                                        <td></td>
+                                        <td><br></td>
+                                        <td><br></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><span>3</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>4</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>5</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="boxall" style="height:320px">
+                        <div class="alltitle">MVP种子选手</div>
+                        <div class="navboxall" id="echart2"></div>
+                    </div>
+
+
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../static/js/js.js"></script>
+
+</body>
+</html>
